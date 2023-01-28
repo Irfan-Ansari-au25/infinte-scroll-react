@@ -119,13 +119,13 @@ function ImageList() {
   return (
     <>
       {hasError && <div>An error occurred</div>}
-      {isLoading ? (
+      {isLoading && (
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            height: "100vh",
+            width: "100vh",
           }}
         >
           <FallingLines
@@ -135,28 +135,27 @@ function ImageList() {
             ariaLabel="falling-lines-loading"
           />
         </div>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          {images.map((image) => (
-            <div style={{ padding: "10px" }} key={Math.random() * 1000}>
-              <img
-                key={image.id}
-                src={image.download_url}
-                alt={image.author}
-                width={512}
-                height={512}
-              />
-            </div>
-          ))}
-        </div>
       )}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        {images.map((image) => (
+          <div style={{ padding: "10px" }} key={Math.random() * 1000}>
+            <img
+              key={image.id}
+              src={image.download_url}
+              alt={image.author}
+              width={512}
+              height={512}
+            />
+          </div>
+        ))}
+      </div>
       <div id="page-end" ref={observer} />
     </>
   );
